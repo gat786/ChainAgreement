@@ -1,11 +1,18 @@
 import logo from './logo.svg';
+import { Routes, Route } from "react-router-dom";
 import './App.css';
+import Homepage from './pages/Homepage';
+import CreatePage from './pages/CreatePage';
+import ViewPage from './pages/ViewPage';
 
 function App() {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 items-center h-screen w-screen">
-      <div className="text-2xl hover-scale w-max m-auto cursor-pointer">Create</div>
-      <div className="text-2xl hover-scale w-max m-auto cursor-pointer">View</div>
+    <div>
+      <Routes>
+        <Route path="/" element={<Homepage/>}/>
+        <Route path="/create" element={<CreatePage/>}/>
+        <Route path="/view" element={<ViewPage/>}/>
+      </Routes>
     </div>
   );
 }
