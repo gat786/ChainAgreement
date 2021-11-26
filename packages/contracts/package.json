@@ -1,7 +1,0 @@
-{
-  "name": "@chain-agreement/contracts",
-  "private": true,
-  "version": "1.0.0",
-  "main": "index.js",
-  "license": "MIT"
-}
