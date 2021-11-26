@@ -15,7 +15,7 @@ async function main() {
 
   // We get the contract to deploy
   const ChainAgreement = await hre.ethers.getContractFactory("ChainAgreement");
-  const chainAgreement = await ChainAgreement.deploy("Hello, Hardhat!");
+  const chainAgreement = await ChainAgreement.deploy();
 
   await chainAgreement.deployed();
 

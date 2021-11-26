@@ -8,5 +8,8 @@
     "@nomiclabs/hardhat-ethers": "^2.0.2",
     "@nomiclabs/hardhat-waffle": "^2.0.1",
     "hardhat": "^2.7.0"
+  },
+  "dependencies": {
+    "ethers": "^5.5.1"
   }
 }

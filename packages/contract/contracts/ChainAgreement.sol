@@ -4,6 +4,8 @@ pragma solidity ^0.8.0;
 import "hardhat/console.sol";
 
 contract ChainAgreement {
+    constructor(){}
+
     struct Agreement {
         address initiator;
         address acceptor;
