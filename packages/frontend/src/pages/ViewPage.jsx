@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 function ViewPage() {
   return (
@@ -11,6 +12,10 @@ function ViewPage() {
         <label htmlFor="form-id">Enter Agreement ID to view</label>
         <input type="text" className="p-2" name="" id="form-id" />
         <button className="w-max px-4 py-2 bg-black font-semibold">View Agreement</button>
+        <Link to="/" className="flex items-center gap-2">
+          <i className="material-icons text-base">arrow_back</i>
+          Go Back to Homepage
+        </Link>
       </div>
     </div>
   )

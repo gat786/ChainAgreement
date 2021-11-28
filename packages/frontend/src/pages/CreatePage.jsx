@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { Link } from 'react-router-dom';
 import MDEditor from "@uiw/react-md-editor";
 
 function CreatePage() {
@@ -33,6 +34,11 @@ function CreatePage() {
         <button className="bg-black w-max px-8 py-2 font-semibold">
           Create Agreement
         </button>
+
+        <Link to="/" className="flex items-center gap-2">
+          <i className="material-icons text-base">arrow_back</i>
+          Go Back to Homepage
+        </Link>
       </div>
     </div>
   )
