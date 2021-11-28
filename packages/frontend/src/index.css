@@ -13,6 +13,10 @@ body {
   @apply text-white;
 }
 
+input{
+  @apply text-gray-800;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;

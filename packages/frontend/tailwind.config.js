@@ -9,5 +9,5 @@ module.exports = {
       display: ['hover', 'focus', 'group-hover']
     },
   },
-  plugins: [],
+  plugins: [require("tailwindcss-logical")],
 }
