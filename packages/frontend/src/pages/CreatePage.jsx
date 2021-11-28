@@ -1,9 +1,11 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
 import MDEditor from "@uiw/react-md-editor";
+const Moralis = require("moralis");
 
 function CreatePage() {
   const [agreementText, setAgreementText] = useState("Sample Agreement");
+
   return (
     <div className="flex flex-col items-center">
       <div className="w-5/6 flex flex-col gap-4 mbs-8">
