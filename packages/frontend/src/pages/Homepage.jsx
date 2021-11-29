@@ -24,9 +24,7 @@ function Homepage() {
     // Login();
   }, []);
 
-  useEffect(() => {
-    checkLogin()
-  })
+  // checkLogin();
 
   const checkLogin = () => {
     const currentUser = Moralis.User.current();
@@ -43,8 +41,6 @@ function Homepage() {
       console.log(`${JSON.stringify(user)} has logged in`);
     })
   }
-
-  console.log(user === null);
 
   return (
     <div>
