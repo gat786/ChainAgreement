@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import MDEditor from "@uiw/react-md-editor";
 import MarkdownPreview from "@uiw/react-markdown-preview";
 import {generateAgreement} from "../utils/generateAgreement";
+import { makeFileObject, storeFiles } from '../utils/web3-helper';
 const Moralis = require("moralis");
 
 function CreatePage() {
@@ -82,7 +83,8 @@ function CreatePage() {
             </h1>
             <button
               onClick={() => {
-                
+                const file = makeFileObject(previewText);
+                storeFiles([file]);
               }}
               className="bg-white text-black px-4">
               Write on blockchain
