@@ -17360,6 +17360,27 @@ web3.storage@^3.4.0:
     streaming-iterables "^6.0.0"
     uint8arrays "^3.0.0"
 
+web3.storage@^3.5.1:
+  version "3.5.1"
+  resolved "https://registry.yarnpkg.com/web3.storage/-/web3.storage-3.5.1.tgz#7c9a68d4e2dcac6af9543a8c75e1dfeec3b7ff3e"
+  integrity sha512-lij4KnezOrQDsSYUzQHmqMHVO+7SM15vIqRFbqxhgpDXD36LL6bTkFUEVqx7mc2yRAedZaRPeu273udBsUGoGA==
+  dependencies:
+    "@ipld/car" "^3.1.4"
+    "@web-std/blob" "^2.1.0"
+    "@web-std/fetch" "^2.0.2"
+    "@web-std/file" "^1.1.0"
+    browser-readablestream-to-it "^1.0.2"
+    carbites "^1.0.6"
+    cborg "^1.5.3"
+    files-from-path "^0.2.1"
+    ipfs-car "^0.5.8"
+    ipns "^0.15.0"
+    libp2p-crypto "^0.20.0"
+    p-retry "^4.5.0"
+    parse-link-header "^1.0.1"
+    streaming-iterables "^6.0.0"
+    uint8arrays "^3.0.0"
+
 web3@^1.6.0:
   version "1.6.1"
   resolved "https://registry.yarnpkg.com/web3/-/web3-1.6.1.tgz#c9e68fe7b3073adddf35393441f950ec69b92735"

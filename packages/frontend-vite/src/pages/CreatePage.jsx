@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import MDEditor from "@uiw/react-md-editor";
 import MarkdownPreview from "@uiw/react-markdown-preview";
 import { generateAgreement } from "../utils/generateAgreement";
+import { Web3Storage } from "web3.storage";
 
 function CreatePage() {
   const [preview, setPreview] = useState(false);
@@ -107,8 +108,15 @@ function CreatePage() {
               <h1 className="text-4xl font-bold">Agreement Preview</h1>
               <button
                 onClick={() => {
-                  const file = makeFileObject(previewText);
-                  storeFiles([file]);
+                  
+                  const web3Client = new Web3Storage({
+                    token: import.meta.env.VITE_WEB3STORAGE_TOKEN,
+                  });
+
+                  const file = new File([previewText], "agreement.md", {
+                    type: "text/markdown",
+                  });
+                  web3Client.put([file]);
                 }}
                 className="bg-white text-black px-4"
               >
