@@ -107,8 +107,7 @@ function CreatePage() {
             <div className="flex justify-between">
               <h1 className="text-4xl font-bold">Agreement Preview</h1>
               <button
-                onClick={() => {
-                  
+                onClick={async () => {
                   const web3Client = new Web3Storage({
                     token: import.meta.env.VITE_WEB3STORAGE_TOKEN,
                   });
@@ -116,7 +115,10 @@ function CreatePage() {
                   const file = new File([previewText], "agreement.md", {
                     type: "text/markdown",
                   });
-                  web3Client.put([file]);
+
+                  const ipfsContentId = await web3Client.put([file]);
+
+                  
                 }}
                 className="bg-white text-black px-4"
               >

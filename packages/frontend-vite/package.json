@@ -10,10 +10,14 @@
     "@tailwindcss/typography": "^0.4.1",
     "@uiw/react-markdown-preview": "^3.4.1",
     "@uiw/react-md-editor": "^3.8.1",
+    "@web3-react/core": "^6.1.9",
+    "@web3-react/injected-connector": "^6.0.7",
+    "@web3-react/network-connector": "^6.1.9",
     "react": "^17.0.0",
     "react-dom": "^17.0.0",
     "react-hook-form": "^7.20.4",
     "react-router-dom": "^6.0.2",
+    "web3": "^1.6.1",
     "web3.storage": "^3.5.1"
   },
   "devDependencies": {
