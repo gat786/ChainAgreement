@@ -7,6 +7,8 @@ import MarkdownPreview from "@uiw/react-markdown-preview";
 import { generateAgreement } from "../utils/generateAgreement";
 import { Web3Storage } from "web3.storage";
 
+import "../utils/contract";
+
 function CreatePage() {
   const [preview, setPreview] = useState(false);
   const [previewText, setPreviewText] = useState(null);

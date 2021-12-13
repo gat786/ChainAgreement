@@ -9,6 +9,19 @@
       rel="stylesheet"
     />
     <title>Chain Agreement</title>
+
+    <script>
+      window.global = window;
+    </script>
+    <script type="module">
+      import process from "process";
+      import { Buffer } from "buffer";
+      import EventEmitter from "events";
+
+      window.Buffer = Buffer;
+      window.process = process;
+      window.EventEmitter = EventEmitter;
+    </script>
   </head>
   <body>
     <div id="root"></div>
