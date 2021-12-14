@@ -21,13 +21,21 @@ export type AgreementStruct = {
   acceptor: string;
   title: string;
   content_id: string;
+  isCreated: boolean;
 };
 
-export type AgreementStructOutput = [string, string, string, string] & {
+export type AgreementStructOutput = [
+  string,
+  string,
+  string,
+  string,
+  boolean
+] & {
   initiator: string;
   acceptor: string;
   title: string;
   content_id: string;
+  isCreated: boolean;
 };
 
 export interface ChainAgreementInterface extends utils.Interface {

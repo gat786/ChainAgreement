@@ -1,16 +1,15 @@
-//SPDX-License-Identifier: Unlicense
+//SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
-import "hardhat/console.sol";
-
 contract ChainAgreement {
-    constructor(){}
+    constructor() {}
 
     struct Agreement {
         address initiator;
         address acceptor;
         string title;
         string content_id;
+        bool isCreated;
     }
     mapping(string => Agreement) agreements;
 
@@ -20,11 +19,16 @@ contract ChainAgreement {
         string memory _title,
         string memory _content_id
     ) public returns (Agreement memory) {
+        require(
+            agreements[_content_id].isCreated != true,
+            "agreement with the same content id already exists"
+        );
         Agreement memory agreement = Agreement({
             initiator: _initiator,
             acceptor: _acceptor,
             title: _title,
-            content_id: _content_id
+            content_id: _content_id,
+            isCreated: true
         });
         agreements[_content_id] = agreement;
         return agreement;
