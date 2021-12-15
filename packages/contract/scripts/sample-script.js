@@ -5,6 +5,7 @@
 // Runtime Environment's members available in the global scope.
 const hre = require("hardhat");
 const fs = require("fs");
+const { ethers } = require("hardhat");
 
 async function main() {
   // Hardhat always runs the compile task when running scripts with its command
@@ -15,7 +16,13 @@ async function main() {
   // await hre.run('compile');
 
   // We get the contract to deploy
-  const ChainAgreement = await hre.ethers.getContractFactory("ChainAgreement");
+
+  const [deployer] = await ethers.getSigners();
+
+  console.log("Deploying the contract with account ", deployer.address);
+  console.log("Account balance ", (await deployer.getBalance()).toString());
+
+  const ChainAgreement = await ethers.getContractFactory("ChainAgreement");
   const chainAgreement = await ChainAgreement.deploy();
 
   await chainAgreement.deployed();
