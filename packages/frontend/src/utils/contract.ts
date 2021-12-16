@@ -1,5 +1,5 @@
 import Web3 from "web3";
-import contractsJson from "@chain-agreement/contract/contract.json";
+import contractsJson from "../contract.json";
 
 interface AgreementInfo {
   initiatorAddress: string;
