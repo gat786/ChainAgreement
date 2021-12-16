@@ -7,7 +7,7 @@ import MarkdownPreview from "@uiw/react-markdown-preview";
 import { generateAgreement } from "../utils/generateAgreement";
 import { Web3Storage } from "web3.storage";
 
-import "../utils/contract";
+import * as ContractHelper from "../utils/contract";
 
 function CreatePage() {
   const [preview, setPreview] = useState(false);
@@ -16,22 +16,26 @@ function CreatePage() {
   const {
     register,
     formState: { errors },
+    getValues,
     setValue,
     watch,
     handleSubmit,
   } = useForm();
 
   const onSubmit = (data) => {
-    const generated = generateAgreement(data);
-    console.log(generated);
-    setPreviewText(generated);
-    setPreview(true);
+    // const generated = generateAgreement(data);
+    // console.log(generated);
+    // setPreviewText(generated);
+    // setPreview(true);
   };
 
   return (
     <div className="flex flex-col items-center">
       <form
-        onSubmit={handleSubmit(onSubmit)}
+        onSubmit={(event) => {
+          event.preventDefault();
+          handleSubmit(onSubmit);
+        }}
         className="w-5/6 flex flex-col gap-4 mbs-8"
       >
         <h1 className="text-xl font-bold mlb-4">Create Agreement Page</h1>
@@ -87,7 +91,18 @@ function CreatePage() {
         />
         {errors.markdown?.type === "required" && "Agreement text is required"}
 
-        <button className="bg-black w-max px-8 py-2 font-semibold">
+        <button
+          onClick={() => {
+            const formData = getValues();
+            ContractHelper.writeToChain({
+              initiatorAddress: formData.initiator,
+              acceptorAddress: formData.acceptor,
+              title: formData.title,
+              contentId: "23213123",
+            });
+          }}
+          className="bg-black w-max px-8 py-2 font-semibold"
+        >
           Create Agreement
         </button>
 
@@ -110,17 +125,24 @@ function CreatePage() {
               <h1 className="text-4xl font-bold">Agreement Preview</h1>
               <button
                 onClick={async () => {
-                  const web3Client = new Web3Storage({
-                    token: import.meta.env.VITE_WEB3STORAGE_TOKEN,
+                  // const web3Client = new Web3Storage({
+                  //   token: import.meta.env.VITE_WEB3STORAGE_TOKEN,
+                  // });
+
+                  // const file = new File([previewText], "agreement.md", {
+                  //   type: "text/markdown",
+                  // });
+
+                  // const ipfsContentId = await web3Client.put([file]);
+
+                  const formData = getValues();
+                  // console.log(formData);
+                  ContractHelper.writeToChain({
+                    initiatorAddress: formData.initiator,
+                    acceptorAddress: formData.acceptor,
+                    title: formData.title,
+                    contentId: "1",
                   });
-
-                  const file = new File([previewText], "agreement.md", {
-                    type: "text/markdown",
-                  });
-
-                  const ipfsContentId = await web3Client.put([file]);
-
-                  
                 }}
                 className="bg-white text-black px-4"
               >

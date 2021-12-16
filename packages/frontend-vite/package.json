@@ -7,6 +7,7 @@
     "serve": "vite preview"
   },
   "dependencies": {
+    "@chain-agreement/contract": "*",
     "@tailwindcss/typography": "^0.4.1",
     "@uiw/react-markdown-preview": "^3.4.1",
     "@uiw/react-md-editor": "^3.8.1",
@@ -14,15 +15,19 @@
     "@web3-react/injected-connector": "^6.0.7",
     "@web3-react/network-connector": "^6.1.9",
     "browserify-zlib": "^0.2.0",
+    "ethers": "^5.5.2",
     "events": "^3.3.0",
     "process": "^0.11.10",
     "react": "^17.0.0",
     "react-dom": "^17.0.0",
     "react-hook-form": "^7.20.4",
     "react-router-dom": "^6.0.2",
+    "rollup-plugin-node-builtins": "^2.1.2",
+    "rollup-plugin-polyfill-node": "^0.8.0",
     "stream-browserify": "^3.0.0",
     "util": "^0.12.4",
     "web3": "^1.6.1",
+    "web3-eth-contract": "^1.6.1",
     "web3.storage": "^3.5.1"
   },
   "devDependencies": {
