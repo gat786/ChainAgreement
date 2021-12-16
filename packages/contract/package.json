@@ -5,7 +5,7 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "compile": "yarn hardhat compile",
+    "build": "yarn hardhat compile",
     "deploy": "yarn hardhat run --network localhost scripts/sample-script.js",
     "dev": "hardhat node"
   },
