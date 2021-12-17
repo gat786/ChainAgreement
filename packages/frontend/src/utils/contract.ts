@@ -10,15 +10,28 @@ interface AgreementInfo {
 
 const web3 = new Web3(Web3.givenProvider || "ws://localhost:8545");
 let myAccount = undefined;
-web3.eth
-  .getAccounts()
-  .then((accounts) => {
-    myAccount = accounts[0];
-    console.log(`${myAccount} selected for all future transactions`);
-  })
-  .catch((error) => {
-    console.log(`loading account failed with error ${error}`);
-  });
+
+function updateMyAccount() {
+  web3.eth
+    .getAccounts()
+    .then((accounts) => {
+      myAccount = accounts[0];
+      console.log(`${myAccount} selected for all future transactions`);
+    })
+    .catch((error) => {
+      console.log(`loading account failed with error ${error}`);
+    });
+}
+
+async function enableEthereum() {
+  if ((window as any).ethereum) {
+    //@ts-ignore
+    ethereum.enable().then(() => {
+      updateMyAccount();
+    });
+  }
+}
+enableEthereum();
 
 const contract = new web3.eth.Contract(
   contractsJson.abi as any,
