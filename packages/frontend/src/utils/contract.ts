@@ -43,7 +43,12 @@ export const writeToChain = async (payload: AgreementInfo) => {
   //     payload.contentId,
   //   );
   // const number = await provider.getBlockNumber();
-  console.log(web3.defaultAccount);
+  console.log({
+    initiatorAddress: payload.initiatorAddress,
+    acceptorAddress: payload.acceptorAddress,
+    title: payload.title,
+    contentId: payload.contentId,
+  });
 
   contract.methods
     .createAgreement(
@@ -59,10 +64,12 @@ export const writeToChain = async (payload: AgreementInfo) => {
     .on("receipt", (receipt) => {
       console.log(`receipt available ${JSON.stringify(receipt)}`);
     })
-    .on("confirmation", (number) => {
-      console.log(`received ${number} confirmation`);
+    .on("confirmation", (number, receipt) => {
+      console.log(`received ${number} confirmation with ${receipt} as receipt`);
     })
-    .on("error", (error) => {
-      console.log(`error occured while creating transaction ${error}`);
+    .on("error", (error, receipt) => {
+      console.log(
+        `error occured while creating transaction ${error} with ${receipt} as receipt`
+      );
     });
 };
