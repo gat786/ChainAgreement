@@ -3,6 +3,7 @@
     "module": "es2020",
     "isolatedModules": true,
     "allowSyntheticDefaultImports": true,
-    "baseUrl": "src/"
+    "baseUrl": "src/",
+    "moduleResolution": "classic"
   }
 }

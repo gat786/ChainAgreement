@@ -11,7 +11,7 @@ interface AgreementInfo {
 const web3 = new Web3(Web3.givenProvider || "ws://localhost:8545");
 let myAccount = undefined;
 
-function updateMyAccount() {
+export function updateMyAccount() {
   web3.eth
     .getAccounts()
     .then((accounts) => {
@@ -26,43 +26,22 @@ function updateMyAccount() {
 async function enableEthereum() {
   if ((window as any).ethereum) {
     //@ts-ignore
-    ethereum.enable().then(() => {
-      updateMyAccount();
-    });
+    ethereum.enable();
   }
 }
 enableEthereum();
 
 const contract = new web3.eth.Contract(
   contractsJson.abi as any,
-  contractsJson.address
+  contractsJson.address,
+  {
+    from: myAccount,
+  }
 );
 
 // @ts-ignore
 
 export const writeToChain = async (payload: AgreementInfo) => {
-  const contract = new web3.eth.Contract(
-    contractsJson.abi as any,
-    contractsJson.address,
-    {
-      from: myAccount,
-    }
-  );
-  //   console.log(contract);
-  //   contract.methods.createAgreement(
-  //     payload.initiatorAddress,
-  //     payload.acceptorAddress,
-  //     payload.title,
-  //     payload.contentId,
-  //   );
-  // const number = await provider.getBlockNumber();
-  console.log({
-    initiatorAddress: payload.initiatorAddress,
-    acceptorAddress: payload.acceptorAddress,
-    title: payload.title,
-    contentId: payload.contentId,
-  });
-
   contract.methods
     .createAgreement(
       payload.initiatorAddress,
@@ -86,3 +65,15 @@ export const writeToChain = async (payload: AgreementInfo) => {
       );
     });
 };
+
+export function readFromChain(agreementId: string) {
+  contract.methods
+    .getAgreement(agreementId)
+    .call()
+    .then((value) => {
+      console.log(`Agreement data is ${JSON.stringify(value)}`);
+    })
+    .catch((err) => {
+      console.log(`${JSON.stringify(err)} occurred while fetching data`);
+    });
+}
