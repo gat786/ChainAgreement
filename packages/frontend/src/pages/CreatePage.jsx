@@ -8,6 +8,7 @@ import { generateAgreement } from "../utils/generateAgreement";
 import { Web3Storage } from "web3.storage";
 
 import * as ContractHelper from "../utils/contract";
+import AppConfig from "../config";
 
 function CreatePage() {
   const [preview, setPreview] = useState(false);
@@ -111,29 +112,27 @@ function CreatePage() {
               <h1 className="text-4xl font-bold">Agreement Preview</h1>
               <button
                 onClick={async () => {
-                  try{
-
+                  console.log(`trying to write agreement`);
+                  try {
                     const web3Client = new Web3Storage({
-                      token: import.meta.env.VITE_WEB3STORAGE_TOKEN,
+                      token: AppConfig.WEB3STORAGE_TOKEN,
                     });
-  
+
                     const file = new File([previewText], "agreement.md", {
                       type: "text/markdown",
                     });
-  
+
                     const ipfsContentId = await web3Client.put([file]);
-  
-                    console.log(ipfsContentId);
+
                     const formData = getValues();
-                    // console.log(formData);
+
                     ContractHelper.writeToChain({
                       initiatorAddress: formData.initiator,
                       acceptorAddress: formData.acceptor,
                       title: formData.title,
                       contentId: ipfsContentId,
                     });
-                  }
-                  catch(err){
+                  } catch (err) {
                     console.log(`${err} happened`);
                   }
                 }}

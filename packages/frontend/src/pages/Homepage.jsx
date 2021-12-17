@@ -5,6 +5,8 @@ import "../App.css";
 import { Link } from "react-router-dom";
 
 function Homepage() {
+  
+
   return (
     <div>
       <div className="grid grid-cols-1 md:grid-cols-2 items-center h-screen w-screen">

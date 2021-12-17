@@ -1,5 +1,5 @@
 import Web3 from "web3";
-import contractsJson from "../contract.json";
+import contractsJson from "../contract-details";
 
 interface AgreementInfo {
   initiatorAddress: string;
@@ -67,9 +67,9 @@ export const writeToChain = async (payload: AgreementInfo) => {
     .on("confirmation", (number, receipt) => {
       console.log(`received ${number} confirmation with ${receipt} as receipt`);
     })
-    .on("error", (error, receipt) => {
+    .on("error", (error) => {
       console.log(
-        `error occured while creating transaction ${error} with ${receipt} as receipt`
+        `error occured while creating transaction ${error} as receipt`
       );
     });
 };

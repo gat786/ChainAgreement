@@ -22,6 +22,15 @@
       window.process = process;
       window.EventEmitter = EventEmitter;
     </script>
+
+    <script>
+      async function enableEthereum() {
+        if(window.ethereum){
+          await ethereum.enable();
+        }
+      }
+      enableEthereum();
+    </script>
   </head>
   <body>
     <div id="root"></div>
