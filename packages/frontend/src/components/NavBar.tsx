@@ -10,10 +10,10 @@ export default function NavBar() {
   return (
     <nav className="h-20 bg-black flex justify-center">
       <div className="w-11/12 flex items-center justify-between">
-        <span className="flex items-center gap-4 mis-8">
+        <Link to="/" className="flex items-center gap-4 mis-8">
           <img src={Icons.Logos.Logo} className="h-12 w-12" alt="" />
           <h1 className="text-xl font-bold">Chain Agreement</h1>
-        </span>
+        </Link>
 
         <ul className="flex items-center text-base gap-4 mie-8">
           {user !== undefined && user !== null ? (
@@ -38,7 +38,7 @@ export default function NavBar() {
               Connect with metamask
             </button>
           )}
-          <Link to="about">More Information</Link>
+          <Link to="/about">More Information</Link>
           <a href="https://github.com/gat786/chainagreement">Github</a>
         </ul>
       </div>

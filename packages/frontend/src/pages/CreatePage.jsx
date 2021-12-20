@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 import MDEditor from "@uiw/react-md-editor";
 import MarkdownPreview from "@uiw/react-markdown-preview";
 import { generateAgreement } from "../utils/generateAgreement";
-import { Web3Storage } from "web3.storage";
+import { Web3Storage } from "web3.storage/dist/bundle.esm.min.js";
 
 import * as ContractHelper from "../utils/contract";
 import AppConfig from "../config";

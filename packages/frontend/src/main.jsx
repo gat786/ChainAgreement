@@ -11,6 +11,8 @@ import { MoralisProvider } from 'react-moralis';
 
 window.Buffer = Buffer;
 
+console.log(config.MORALIS_APPID,config.MORALIS_SERVER_URL);
+
 ReactDOM.render(
   <MoralisProvider appId={config.MORALIS_APPID} serverUrl={config.MORALIS_SERVER_URL}>
     <BrowserRouter>

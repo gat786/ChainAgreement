@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import logo from "../logo.svg";
 import "../App.css";
-import styles from "./pages.module.css";
+import * as styles from "./pages.module.css";
 
 import { Link } from "react-router-dom";
 import { useMoralis } from "react-moralis";
