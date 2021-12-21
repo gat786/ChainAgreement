@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "scripts": {
     "start": "parcel index.html",
-    "build": "parcel build index.html",
+    "build": "parcel build index.html && yarn run copy",
+    "copy" : "cp src/_redirects dist/",  
     "watch": "npx tailwindcss -i ./src/index.css -o ./dist/output.css --watch"
   },
   "dependencies": {
