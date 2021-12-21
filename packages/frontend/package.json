@@ -2,7 +2,8 @@
   "name": "@chain-agreement/frontend",
   "version": "0.0.0",
   "scripts": {
-    "start": "parcel index.html"
+    "start": "parcel index.html",
+    "build": "parcel build index.html"
   },
   "dependencies": {
     "@chain-agreement/contract": "*",
@@ -30,6 +31,7 @@
     "autoprefixer": "^10.4.0",
     "parcel": "^2.0.1",
     "postcss": "^8.4.4",
+    "postcss-modules": "^4.2.2",
     "tailwindcss": "^2.2.19",
     "tailwindcss-logical": "^2.0.0"
   }

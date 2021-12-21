@@ -7,7 +7,7 @@ import MarkdownPreview from "@uiw/react-markdown-preview";
 import { generateAgreement } from "../utils/generateAgreement";
 import { Web3Storage } from "web3.storage/dist/bundle.esm.min.js";
 
-import * as ContractHelper from "../utils/contract";
+// import * as ContractHelper from "../utils/contract";
 import AppConfig from "../config";
 import NavBar from "../components/NavBar";
 
@@ -132,12 +132,12 @@ function CreatePage() {
 
                       const formData = getValues();
 
-                      ContractHelper.writeToChain({
-                        initiatorAddress: formData.initiator,
-                        acceptorAddress: formData.acceptor,
-                        title: formData.title,
-                        contentId: ipfsContentId,
-                      });
+                      // ContractHelper.writeToChain({
+                      //   initiatorAddress: formData.initiator,
+                      //   acceptorAddress: formData.acceptor,
+                      //   title: formData.title,
+                      //   contentId: ipfsContentId,
+                      // });
                     } catch (err) {
                       console.log(`${err} happened`);
                     }
