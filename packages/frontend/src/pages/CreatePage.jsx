@@ -5,7 +5,6 @@ import { useForm } from "react-hook-form";
 import MDEditor from "@uiw/react-md-editor";
 import MarkdownPreview from "@uiw/react-markdown-preview";
 import { generateAgreement } from "../utils/generateAgreement";
-import { Web3Storage } from "web3.storage/dist/bundle.esm.min.js";
 
 // import * as ContractHelper from "../utils/contract";
 import { useWeb3ExecuteFunction } from "react-moralis";
@@ -45,7 +44,7 @@ function CreatePage() {
   return (
     <div>
       <NavBar />
-      <div className="flex flex-col items-center mt-8">
+      <div className="flex flex-col items-center mlb-8">
         <form
           onSubmit={handleSubmit(onSubmit)}
           className="w-5/6 flex flex-col gap-4"
