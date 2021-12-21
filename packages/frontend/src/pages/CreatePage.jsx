@@ -5,10 +5,12 @@ import { useForm } from "react-hook-form";
 import MDEditor from "@uiw/react-md-editor";
 import MarkdownPreview from "@uiw/react-markdown-preview";
 import { generateAgreement } from "../utils/generateAgreement";
-import { Web3Storage } from "web3.storage";
+import { Web3Storage } from "web3.storage/dist/bundle.esm.min.js";
 
-import * as ContractHelper from "../utils/contract";
+// import * as ContractHelper from "../utils/contract";
+import { useWeb3ExecuteFunction } from "react-moralis";
 import AppConfig from "../config";
+import ContractDetails from "../contract-details";
 import NavBar from "../components/NavBar";
 
 function CreatePage() {
@@ -31,13 +33,22 @@ function CreatePage() {
     setPreview(true);
   };
 
+  const { data, error, fetch, isFetching, isLoading } =
+    useWeb3ExecuteFunction();
+
+  useEffect(() => {
+    console.log(
+      `data is ${JSON.stringify(data)} and error is ${JSON.stringify(error)}`
+    );
+  }, [data, error]);
+
   return (
     <div>
       <NavBar />
-      <div className="flex flex-col items-center">
+      <div className="flex flex-col items-center mt-8">
         <form
           onSubmit={handleSubmit(onSubmit)}
-          className="w-5/6 flex flex-col gap-4 mbs-8"
+          className="w-5/6 flex flex-col gap-4"
         >
           <h1 className="text-xl font-bold mlb-4">Create Agreement Page</h1>
 
@@ -132,12 +143,28 @@ function CreatePage() {
 
                       const formData = getValues();
 
-                      ContractHelper.writeToChain({
-                        initiatorAddress: formData.initiator,
-                        acceptorAddress: formData.acceptor,
-                        title: formData.title,
-                        contentId: ipfsContentId,
+                      // ContractHelper.writeToChain({
+                      //   initiatorAddress: formData.initiator,
+                      //   acceptorAddress: formData.acceptor,
+                      //   title: formData.title,
+                      //   contentId: ipfsContentId,
+                      // });
+
+                      const result = await fetch({
+                        params: {
+                          abi: ContractDetails?.abi,
+                          contractAddress: ContractDetails?.address,
+                          functionName: "createAgreement",
+                          params: {
+                            _initiator: formData.initiator,
+                            _acceptor: formData.acceptor,
+                            _title: formData.title,
+                            _content_id: ipfsContentId,
+                          },
+                        },
                       });
+
+                      console.log(result);
                     } catch (err) {
                       console.log(`${err} happened`);
                     }
