@@ -37,7 +37,9 @@ function CreatePage() {
     useWeb3ExecuteFunction();
 
   useEffect(() => {
-    console.log(`data is ${data} and error is ${error}`);
+    console.log(
+      `data is ${JSON.stringify(data)} and error is ${JSON.stringify(error)}`
+    );
   }, [data, error]);
 
   return (
@@ -157,7 +159,7 @@ function CreatePage() {
                             _initiator: formData.initiator,
                             _acceptor: formData.acceptor,
                             _title: formData.title,
-                            _contentId: ipfsContentId,
+                            _content_id: ipfsContentId,
                           },
                         },
                       });
