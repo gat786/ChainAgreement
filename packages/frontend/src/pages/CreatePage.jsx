@@ -44,7 +44,7 @@ function CreatePage() {
   return (
     <div>
       <NavBar />
-      <div className="flex flex-col items-center mlb-8">
+      <div className="flex flex-col items-center mt-8">
         <form
           onSubmit={handleSubmit(onSubmit)}
           className="w-5/6 flex flex-col gap-4"

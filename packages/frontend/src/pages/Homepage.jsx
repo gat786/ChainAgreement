@@ -8,11 +8,12 @@ import { useMoralis } from "react-moralis";
 import NavBar from "../components/NavBar";
 
 function Homepage() {
+
   return (
     <div>
       <NavBar />
       <div className="flex justify-center">
-        <div className="flex w-full md:w-11/12 mt-8 gap-8">
+        <div className="flex w-full md:w-11/12 mlb-8 gap-8">
           <Link to="create" className={`${styles.optionsCard}`}>
             <i className="material-icons text-3xl">create</i>
             <div className="">Create</div>
