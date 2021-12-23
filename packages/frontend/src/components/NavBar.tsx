@@ -11,8 +11,8 @@ export default function NavBar() {
 
   return (
     <nav className="h-20 bg-black flex justify-center z-10">
-      <div className="w-11/12 flex items-center justify-between">
-        <Link to="/" className="flex items-center gap-4 mis-8">
+      <div className="w-5/6 flex items-center justify-between">
+        <Link to="/" className="flex items-center gap-4">
           <img src={Icons.Logos.Logo} className="h-12 w-12" alt="" />
           <h1 className="text-xl font-bold">Chain Agreement</h1>
         </Link>
