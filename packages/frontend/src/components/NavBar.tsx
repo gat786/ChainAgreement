@@ -7,10 +7,10 @@ import * as Icons from "../assets/icons.export";
 export default function NavBar() {
   const { authenticate, isAuthenticated, user, logout } = useMoralis();
 
-  const [drawerOpen, setDrawerOpen] = useState<boolean>(false);
+  const [drawerOpen, setDrawerOpen] = useState(false);
 
   return (
-    <nav className="h-20 bg-black flex justify-center">
+    <nav className="h-20 bg-black flex justify-center z-10">
       <div className="w-11/12 flex items-center justify-between">
         <Link to="/" className="flex items-center gap-4 mis-8">
           <img src={Icons.Logos.Logo} className="h-12 w-12" alt="" />
@@ -27,9 +27,9 @@ export default function NavBar() {
         </button>
 
         <div
-          className={`absolute ${
-            drawerOpen ? "w-full delay-300" : "w-0"
-          } duration-300 h-full top-0 right-0`}
+          className={`absolute z-10 ${
+            drawerOpen ? "w-full" : "w-0"
+          } h-full top-0 right-0`}
         >
           <div
             onClick={() => {
@@ -37,38 +37,48 @@ export default function NavBar() {
             }}
             className="absolute w-full h-full bg-black bg-opacity-60"
           />
+
           <div
             className={
-              `absolute right-0 top-0 h-full bg-black gap-4 ` +
-              `${
-                drawerOpen ? "w-3/4 max-w-xs" : "w-0"
-              } transition-all duration-300 delay-100 pli-8`
+              `absolute lg:hidden right-0 top-0 h-full  transition-all duration-500 bg-black gap-4 ` +
+              `${drawerOpen ? "w-3/4 max-w-xs" : "w-0 overflow-hidden"}`
             }
           >
-            {user !== undefined && user !== null ? (
-              <div className="flex gap-4 items-center">
-                <span>{user?.getUsername()}</span>
+            <div className="flex flex-col items-start">
+              {user !== undefined && user !== null ? (
+                <div className="flex flex-col items-start gap-4 md:items-center px-8 mt-8">
+                  <span>{user?.getUsername()}</span>
+                  <button
+                    onClick={() => {
+                      logout();
+                    }}
+                    className="text-base text-red-500 border p-2 border-red-400"
+                  >
+                    Logout
+                  </button>
+                </div>
+              ) : (
                 <button
                   onClick={() => {
-                    logout();
+                    authenticate();
                   }}
-                  className="text-base text-red-500 border p-2 border-red-400"
+                  className="rounded-lg px-8 mt-8 text-base"
                 >
-                  Logout
+                  Connect with metamask
                 </button>
+              )}
+              <Link className="underline px-8 my-8" to="/about">
+                More Information
+              </Link>
+              <div className="">
+                <a
+                  className="underline px-8 my-8"
+                  href="https://github.com/gat786/chainagreement"
+                >
+                  Github
+                </a>
               </div>
-            ) : (
-              <button
-                onClick={() => {
-                  authenticate();
-                }}
-                className="text-base bg-gray-700 px-4 py-2 rounded-lg"
-              >
-                Connect with metamask
-              </button>
-            )}
-            <Link to="/about">More Information</Link>
-            <a href="https://github.com/gat786/chainagreement">Github</a>
+            </div>
           </div>
         </div>
 

@@ -1,4 +1,0 @@
-.optionsCard{
-    @apply text-2xl flex flex-col items-center justify-center cursor-pointer rounded-xl bg-gray-600 h-40 w-40;
-    @apply gap-4;
-}
