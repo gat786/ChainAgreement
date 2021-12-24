@@ -2,7 +2,7 @@
   "name": "@chain-agreement/frontend",
   "version": "0.0.0",
   "scripts": {
-    "start": "npm-run-all --parallel 'watch:*'",
+    "start": "NODE_OPTIONS='--max-old-space-size=4096' npm-run-all --parallel 'watch:*'",
     "watch:serve": "parcel index.html --host 0.0.0.0",
     "watch:css": "npx tailwindcss -i ./src/index.css -o ./src/output.css --watch",
     "build": "parcel build index.html && yarn run copy",

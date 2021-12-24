@@ -5,6 +5,10 @@ import { useForm } from "react-hook-form";
 import NavBar from "../components/NavBar.tsx";
 
 import * as ChainFunctions from "../utils/contract";
+import ContractDetails from "../contract-details";
+
+import { useEffect } from "react/cjs/react.development";
+import { useMoralis, useWeb3ExecuteFunction } from "react-moralis";
 
 function ViewPage() {
   const {
@@ -16,13 +20,50 @@ function ViewPage() {
     handleSubmit,
   } = useForm();
 
-  const onSubmit = (values) => {
-    console.log(values);
+  const { data, error, fetch, isFetching, isLoading } =
+    useWeb3ExecuteFunction();
+
+  const { isAuthenticated } = useMoralis();
+
+  const onSubmit = async (values) => {
+    console.log(`fetching contract data`);
+    const contentId = values?.contentId;
+
+    await fetch({
+      params: {
+        abi: ContractDetails.abi,
+        contractAddress: ContractDetails.address,
+        functionName: "getAgreement",
+        params: {
+          _content_id: contentId,
+        },
+      },
+      onSuccess: (results) => {
+        console.log(`query yielded ${JSON.stringify(results)}`);
+      },
+      onError: (errors) => {
+        console.log(`errors occured ${JSON.stringify(errors)}`);
+      },
+      onComplete: () => {
+        console.log(`Fetching completed`);
+      },
+    });
     // ChainFunctions.readFromChain();
+  };
+
+  const displayAlert = () => {
+    if (!isAuthenticated) {
+      alert("Please Connect with Metamask before using the application");
+    }
   };
 
   return (
     <div>
+      {(isFetching || isLoading) && (
+        <div className="fixed top-0 w-full h-full bg-black bg-opacity-70 flex items-center justify-center">
+          Loading...
+        </div>
+      )}
       <NavBar />
       <div className="flex flex-col items-center">
         <form
