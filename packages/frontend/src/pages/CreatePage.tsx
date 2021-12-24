@@ -13,9 +13,18 @@ import ContractDetails from "../contract-details";
 import NavBar from "../components/NavBar";
 import { Web3Storage } from "web3.storage/dist/bundle.esm.min.js";
 
+enum CreationProgress {
+  Started,
+  UploadedToIpfs,
+  AgreementCreated,
+}
+
 function CreatePage() {
   const [preview, setPreview] = useState(false);
   const [previewText, setPreviewText] = useState(null);
+  const [creationProgress, setCreationProgress] = useState<CreationProgress>();
+  const [ipfsContentId, setIpfsContentId] = useState<string>(null);
+  const [closeProgress, setCloseProgress] = useState();
 
   const {
     register,
@@ -44,6 +53,49 @@ function CreatePage() {
 
   return (
     <div>
+      {/*  */}
+      {(closeProgress || isLoading || isFetching) && (
+        <div className="bg-black bg-opacity-70 fixed top-0 h-full w-full z-10 flex items-center justify-center text-center">
+          <div className="absolute text-xl font-bold flex flex-col items-center gap-4">
+            {creationProgress >= CreationProgress.Started && (
+              <div>Uploading file to IPFS</div>
+            )}
+
+            {creationProgress > CreationProgress.Started && (
+              <>
+                <i className="material-icons">arrow_downward</i>
+                <div>
+                  File Uploaded to IPFS and you can view it
+                  <a
+                    href={`https://ipfs.io/ipfs/${ipfsContentId}`}
+                    className="underline"
+                  >
+                    {" "}
+                    here
+                  </a>
+                  <br />
+                  Writing the instance on blockchain...
+                </div>
+              </>
+            )}
+
+            {creationProgress >= CreationProgress.AgreementCreated && (
+              <>
+                <i className="material-icons">arrow_downward</i>
+                <div>Agreement has been created with id {ipfsContentId}</div>
+              </>
+            )}
+            <button
+              className="bg-gray-700 p-4 rounded-full flex items-center justify-center mbs-8"
+              onClick={() => {
+                setCloseProgress(() => false);
+              }}
+            >
+              <i className="material-icons">close</i>
+            </button>
+          </div>
+        </div>
+      )}
       <NavBar />
       <div className="flex flex-col items-center">
         <form
@@ -132,6 +184,8 @@ function CreatePage() {
                   onClick={async () => {
                     console.log(`trying to write agreement`);
                     try {
+                      setCloseProgress(() => true);
+                      setCreationProgress(() => CreationProgress.Started);
                       const web3Client = new Web3Storage({
                         token: AppConfig.WEB3STORAGE_TOKEN,
                       });
@@ -141,6 +195,11 @@ function CreatePage() {
                       });
 
                       const ipfsContentId = await web3Client.put([file]);
+
+                      setIpfsContentId(() => ipfsContentId);
+                      setCreationProgress(
+                        () => CreationProgress.UploadedToIpfs
+                      );
 
                       const formData = getValues();
 
@@ -165,7 +224,9 @@ function CreatePage() {
                         },
                       });
 
-                      console.log(result);
+                      setCreationProgress(
+                        () => CreationProgress.AgreementCreated
+                      );
                     } catch (err) {
                       console.log(`${err} happened`);
                     }
