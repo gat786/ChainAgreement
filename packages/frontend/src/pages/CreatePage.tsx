@@ -104,7 +104,11 @@ function CreatePage() {
         >
           <h1 className="text-xl font-bold mlb-4">Create Agreement Page</h1>
 
-          <label className="font-semibold" htmlFor="initiator-address">
+          <label
+            title="Enter Address of entity who is supposed to be the initiator"
+            className="font-semibold"
+            htmlFor="initiator-address"
+          >
             Agreement Initiator
           </label>
           <input
@@ -123,7 +127,11 @@ function CreatePage() {
             ("minLength" || "maxLength" || "pattern") &&
             "Make sure it is a correct address"}
 
-          <label className="font-semibold" htmlFor="acceptor-address">
+          <label
+            title="Enter Address of entity who is supposed to be the acceptor"
+            className="font-semibold"
+            htmlFor="acceptor-address"
+          >
             Agreement Acceptor
           </label>
           <input
@@ -140,13 +148,19 @@ function CreatePage() {
             ("minLength" || "maxLength" || "pattern") &&
             "Make sure it is a correct address"}
 
-          <label className="font-semibold" htmlFor="agreement-title">
+          <label
+            title="Title for the agreement"
+            className="font-semibold" htmlFor="agreement-title">
             Agreement title
           </label>
           <input {...register("title", { required: true })} className="p-2" />
           {errors.title?.type === "required" && "Title is required"}
 
-          <label className="font-semibold" htmlFor="agreement-text">
+          <label
+            title="Content for the agreement"
+            className="font-semibold"
+            htmlFor="agreement-text"
+          >
             Agreement Text
           </label>
           <MDEditor
