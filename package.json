@@ -5,5 +5,9 @@
   ],
   "scripts": {
     "build": "yarn workspaces run build"
+  },
+  "devDependencies": {
+    "@mdx-js/react": "^1.6.22",
+    "@parcel/transformer-mdx": "^2.0.1"
   }
 }

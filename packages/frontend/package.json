@@ -9,7 +9,8 @@
   },
   "dependencies": {
     "@chain-agreement/contract": "*",
-    "@tailwindcss/typography": "^0.4.1",
+    "@mdx-js/react": "^1.6.22",
+    "@tailwindcss/typography": "^0.5.0",
     "@uiw/react-markdown-preview": "^3.4.1",
     "@uiw/react-md-editor": "^3.8.1",
     "browserify-zlib": "^0.2.0",
@@ -34,11 +35,13 @@
   },
   "devDependencies": {
     "@types/node": "^17.0.1",
+    "@types/react": "^17.0.38",
     "autoprefixer": "^10.4.0",
     "parcel": "^2.0.1",
+    "parcel-plugin-markdown-string": "^1.4.2",
     "postcss": "^8.4.4",
     "postcss-modules": "^4.2.2",
-    "tailwindcss": "^2.2.19",
-    "tailwindcss-logical": "^2.0.0"
+    "tailwindcss": "^3.0.7",
+    "tailwindcss-logical": "^3.0.0"
   }
 }

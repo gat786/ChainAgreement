@@ -24,7 +24,7 @@ function CreatePage() {
   const [previewText, setPreviewText] = useState(null);
   const [creationProgress, setCreationProgress] = useState<CreationProgress>();
   const [ipfsContentId, setIpfsContentId] = useState<string>(null);
-  const [closeProgress, setCloseProgress] = useState();
+  const [closeProgress, setCloseProgress] = useState<boolean>();
 
   const {
     register,
