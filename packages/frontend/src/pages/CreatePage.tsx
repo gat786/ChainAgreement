@@ -11,6 +11,7 @@ import { useWeb3ExecuteFunction } from "react-moralis";
 import AppConfig from "../config";
 import ContractDetails from "../contract-details";
 import NavBar from "../components/NavBar";
+import { Web3Storage } from "web3.storage/dist/bundle.esm.min.js";
 
 function CreatePage() {
   const [preview, setPreview] = useState(false);
@@ -44,7 +45,7 @@ function CreatePage() {
   return (
     <div>
       <NavBar />
-      <div className="flex flex-col items-center mt-8">
+      <div className="flex flex-col items-center">
         <form
           onSubmit={handleSubmit(onSubmit)}
           className="w-5/6 flex flex-col gap-4"
@@ -59,6 +60,7 @@ function CreatePage() {
               required: true,
               maxLength: 42,
               minLength: 42,
+              // @ts-ignore
               pattern: "/^0x[a-fA-F0-9]{40}$/",
             })}
             className="p-2"

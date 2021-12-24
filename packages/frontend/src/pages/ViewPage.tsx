@@ -2,13 +2,21 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 import { useForm } from "react-hook-form";
-import NavBar from "../components/NavBar.tsx";
+import NavBar from "../components/NavBar";
 
 import * as ChainFunctions from "../utils/contract";
 import ContractDetails from "../contract-details";
 
 import { useEffect } from "react/cjs/react.development";
 import { useMoralis, useWeb3ExecuteFunction } from "react-moralis";
+import { stringify } from "querystring";
+
+export interface AgreementData {
+  initiator: string;
+  acceptor: string;
+  title: string;
+  contentId: string;
+}
 
 function ViewPage() {
   const {
@@ -22,6 +30,9 @@ function ViewPage() {
 
   const { data, error, fetch, isFetching, isLoading } =
     useWeb3ExecuteFunction();
+
+  const [agreementDetails, setAgreementDetails] =
+    React.useState<AgreementData>();
 
   const { isAuthenticated } = useMoralis();
 
