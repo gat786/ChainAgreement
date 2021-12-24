@@ -1,31 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="./src/favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      href="https://fonts.googleapis.com/icon?family=Material+Icons"
-      rel="stylesheet"
-    />
-    <title>Chain Agreement</title>
 
-    <script>
-      window.global = window;
-    </script>
-    <script type="module">
-      import process from "process";
-      import { Buffer } from "buffer";
-      import EventEmitter from "events";
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="./src/favicon.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+  <title>Chain Agreement</title>
 
-      window.Buffer = Buffer;
-      window.process = process;
-      window.EventEmitter = EventEmitter;
-    </script>
-    <!-- <link rel="stylesheet" href="./src/index.css"> -->
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="./src/main.jsx"></script>
-  </body>
+  <script>
+    window.global = window;
+  </script>
+  <script type="module">
+    import process from "process";
+    import { Buffer } from "buffer";
+    import EventEmitter from "events";
+
+    window.Buffer = Buffer;
+    window.process = process;
+    window.EventEmitter = EventEmitter;
+  </script>
+  <!-- <link rel="stylesheet" href="./src/index.css"> -->
+
+  <meta property="og:image"
+    content="https://res.cloudinary.com/dtldj8hpa/image/upload/v1640361968/gats.dev/chain-agreement.png" />
+  <meta property="og:title" content="Chain Agreement" />
+  <meta property="og:type" content="text/html" />
+  <meta property="og:url" content="https://chain-agreement.gats.dev" />
+
+  <meta name="twitter:card" content="summary_large_image">
+  </meta>
+  <meta name="twitter:title" content="Chain Agreement">
+  </meta>
+  <meta name="twitter:description" content="Web3 based platform to create Agreements and stored them on IPFS">
+  </meta>
+  <meta name="twitter:image:src"
+    content="https://res.cloudinary.com/dtldj8hpa/image/upload/v1640361968/gats.dev/chain-agreement.png">
+  </meta>
+  <meta name="twitter:site" content="@igat786" />
+  <meta name="twitter:creator" content="@igat786" />
+</head>
+
+<body>
+  <div id="root"></div>
+  <script type="module" src="./src/main.jsx"></script>
+</body>
+
 </html>
