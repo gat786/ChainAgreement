@@ -1,13 +1,45 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useMoralis } from "react-moralis";
 import { Link } from "react-router-dom";
+
+import config from "../config";
 
 import * as Icons from "../assets/icons.export";
 
 export default function NavBar() {
-  const { authenticate, isAuthenticated, user, logout } = useMoralis();
+  const {
+    authenticate,
+    isAuthenticated,
+    isWeb3Enabled,
+    enableWeb3,
+    user,
+    logout,
+  } = useMoralis();
 
   const [drawerOpen, setDrawerOpen] = useState(false);
+
+  const unlockMetamask = () => {
+    enableWeb3({
+      onSuccess: () => {
+        console.log(`successfully enabled`);
+      },
+      onError: (error) => {
+        console.log({ error });
+      },
+    });
+  };
+
+  useEffect(() => {
+    unlockMetamask();
+  }, []);
+
+  const loginUser = () => {
+    if (isWeb3Enabled) {
+      authenticate();
+    } else {
+      alert(`Make sure your metamask wallet is unlocked and web3 is enabled`);
+    }
+  };
 
   return (
     <nav className="h-20 bg-black flex justify-center z-10">
@@ -60,7 +92,7 @@ export default function NavBar() {
               ) : (
                 <button
                   onClick={() => {
-                    authenticate();
+                    loginUser();
                   }}
                   className="rounded-lg px-8 mt-8 text-base"
                 >
@@ -98,7 +130,7 @@ export default function NavBar() {
           ) : (
             <button
               onClick={() => {
-                authenticate();
+                loginUser();
               }}
               className="text-base bg-gray-700 px-4 py-2 rounded-lg"
             >
