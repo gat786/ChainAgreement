@@ -7,15 +7,15 @@ import NavBar from "../components/NavBar";
 import * as ChainFunctions from "../utils/contract";
 import ContractDetails from "../contract-details";
 
-import { useEffect } from "react/cjs/react.development";
+import { useEffect, useState } from "react";
 import { useMoralis, useWeb3ExecuteFunction } from "react-moralis";
 import { stringify } from "querystring";
 
-export interface AgreementData {
-  initiator: string;
-  acceptor: string;
-  title: string;
-  contentId: string;
+interface AgreementData {
+  initiator?: string;
+  acceptor?: string;
+  title?: string;
+  contentId?: string;
 }
 
 function ViewPage() {
@@ -31,8 +31,7 @@ function ViewPage() {
   const { data, error, fetch, isFetching, isLoading } =
     useWeb3ExecuteFunction();
 
-  const [agreementDetails, setAgreementDetails] =
-    React.useState<AgreementData>();
+  const [agreementDetails, setAgreementDetails] = useState<AgreementData>(null);
 
   const { isAuthenticated } = useMoralis();
 
@@ -50,7 +49,14 @@ function ViewPage() {
         },
       },
       onSuccess: (results) => {
-        console.log(`query yielded ${JSON.stringify(results)}`);
+        setAgreementDetails(() => {
+          return {
+            initiator: results[0],
+            acceptor: results[1],
+            title: results[2],
+            contentId: results[3],
+          };
+        });
       },
       onError: (errors) => {
         console.log(`errors occured ${JSON.stringify(errors)}`);
@@ -103,6 +109,20 @@ function ViewPage() {
             Go Back to Homepage
           </Link>
         </form>
+
+        {agreementDetails !== null && agreementDetails !== undefined && (
+          <div className="flex flex-col gap-4 w-5/6 mlb-8">
+            <div>Initiator - {agreementDetails?.initiator}</div>
+            <div>Acceptor - {agreementDetails?.acceptor}</div>
+            <div>Title - {agreementDetails?.title}</div>
+            <div>
+              Read complete agreement here - {" "}
+              <a href={`https://ipfs.io/ipfs/${agreementDetails?.contentId}`}>
+                Link
+              </a>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
